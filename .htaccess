@@ -1,11 +1,4 @@
-RewriteEngine On
-
-# Route /parse to index.php
-RewriteRule ^parse$ index.php [L,QSA]
-
-# Route /parse/ to index.php (optional trailing slash)
-RewriteRule ^parse/$ index.php [L,QSA]
-
-# Handle existing files and directories normally
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
