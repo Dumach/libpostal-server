@@ -1,0 +1,21 @@
+meta {
+  name: Parse Address
+  type: http
+  seq: 1
+}
+
+get {
+  url: localhost/postal-server/parse?address=The Book Club 100-106 Leonard St, Shoreditch, London, Greater London, EC2A 4RH, United Kingdom&token=12345678
+  body: none
+  auth: inherit
+}
+
+params:query {
+  address: The Book Club 100-106 Leonard St, Shoreditch, London, Greater London, EC2A 4RH, United Kingdom
+  token: 12345678
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
