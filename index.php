@@ -43,13 +43,13 @@ switch ($lastPart) {
         break;
 }
 
-function GetHealth()
+function GetHealth(): void
 {
     echo json_encode(['status' => 'ok']);
     exit;
 }
 
-function GetParse()
+function GetParse(): void
 {
     // Get auth token from environment
     $authToken = $_ENV['AUTH_TOKEN'] ?? null;
@@ -75,17 +75,10 @@ function GetParse()
     try {
         // Parse the address using Postal\Parser
         $parsedAddress = Postal\Parser::parse_address($address);
-
-        // Return the parsed data
-        echo json_encode([
-            'success' => true,
-            'original_address' => $address,
-            'parsed_data' => $parsedAddress
-        ]);
+        echo json_encode($parsedAddress);
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode([
-            'success' => false,
             'error' => 'Failed to parse address: ' . $e->getMessage()
         ]);
     }
