@@ -58,6 +58,16 @@ function GetParse(): void
     $providedToken = $_SERVER['HTTP_AUTHORIZATION'] ?? $_GET['token'] ?? null;
 
     if (!$authToken || !$providedToken || $providedToken !== $authToken) {
+        // Log unauthorized request to Apache error log
+        $clientIp = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $requestUri = $_SERVER['REQUEST_URI'] ?? 'unknown';
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
+
+        $logMessage = "client denied by server configuration: Authentication token mismatch - " .
+            "IP: {$clientIp}, URI: {$requestUri}, User-Agent: {$userAgent}";
+
+        error_log($logMessage);
+
         http_response_code(401);
         echo json_encode(['error' => 'Unauthorized']);
         exit;
