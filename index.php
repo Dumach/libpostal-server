@@ -1,11 +1,6 @@
 <?php
-require_once 'vendor/autoload.php';
-
-use Dotenv\Dotenv;
-
 // Load environment variables
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$_ENV = parse_ini_file('.env');
 
 // Set content type
 header('Content-Type: application/json');

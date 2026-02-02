@@ -1,10 +1,16 @@
 {
-    "require": {
-        "vlucas/phpdotenv": "^5.4"
-    },
+    "name": "dumach/libpostal-server",
+    "description": "PHP server for parsing addresses with libpostal",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
-    }
+    },
+    "authors": [
+        {
+            "name": "Dumach",
+            "email": "nagyalex003@gmail.com"
+        }
+    ],
+    "license": "MIT"
 }
