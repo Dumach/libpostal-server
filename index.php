@@ -59,7 +59,9 @@ function GetParse(): void
 
     if (!$authToken || !$providedToken || $providedToken !== $authToken) {
         // Log unauthorized request to Apache error log
-        $clientIp = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $clientIp = $_SERVER['HTTP_X_FORWARDED_FOR']
+            ?? $_SERVER['REMOTE_ADDR']
+            ?? 'unknown';
         $requestUri = $_SERVER['REQUEST_URI'] ?? 'unknown';
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
 
