@@ -38,7 +38,6 @@ switch ($lastPart) {
         break;
     default: {
             http_response_code(404);
-            echo json_encode(['error' => 'Not found. Use /parse?address=your_address']);
         };
         break;
 }
@@ -70,8 +69,7 @@ function GetParse(): void
 
         error_log($logMessage);
 
-        http_response_code(401);
-        echo json_encode(['error' => 'Unauthorized']);
+        http_response_code(404);
         exit;
     }
 
